@@ -16,13 +16,11 @@ import {
   SelectValue,
 } from "../../components/ui/select";
 import {
-  Tabs,
   TabsContent,
-  TabsList,
-  TabsTrigger,
 } from "../../components/ui/tabs";
 import { CalendarIcon, Clock } from "lucide-react";
 import React, { useState } from "react";
+import { metricConfig } from "./metric.constants";
 
 export const AddMetric = () => {
   const [formData, setFormData] = useState({
@@ -33,30 +31,6 @@ export const AddMetric = () => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const metricConfig = {
-    steps: {
-      unit: "steps",
-      placeholder: "e.g., 5000",
-      min: 0,
-      max: 50000,
-      step: 100,
-    },
-    water: {
-      unit: "liters",
-      placeholder: "e.g., 2.5",
-      min: 0,
-      max: 10,
-      step: 0.1,
-    },
-    heart_rate: {
-      unit: "bpm",
-      placeholder: "e.g., 70",
-      min: 30,
-      max: 220,
-      step: 1,
-    },
-  };
 
   const currentConfig = formData.type ? metricConfig[formData.type] : null;
 
@@ -139,9 +113,9 @@ export const AddMetric = () => {
             <CardContent className="py-6">
               {/* <HealthDataForm onSubmit={addHealthMetric} /> */}
               <div className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
+                <div className="space-y-4 ">
                   <Label htmlFor="type">Metric Type *</Label>
-                  <Select
+                  <Select 
                     value={formData.type}
                     onValueChange={(value) =>
                       setFormData((prev) => ({
@@ -152,11 +126,11 @@ export const AddMetric = () => {
                     }
                   >
                     <SelectTrigger
-                      className={errors.type ? "border-red-500" : ""}
+                  className={`w-88 ${errors.type ? "border-red-500" : ""}-mt-2`}
                     >
                       <SelectValue placeholder="Select metric type" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white cursor-pointer">
+                    <SelectContent className="bg-white cursor-pointer  w-80">
                       <SelectItem value="steps">📱 Step Count</SelectItem>
                       <SelectItem value="water">💧 Water Intake</SelectItem>
                       <SelectItem value="heart_rate">❤️ Heart Rate</SelectItem>
@@ -244,7 +218,7 @@ export const AddMetric = () => {
                   <h4 className="font-semibold text-blue-900 mb-3 text-lg">
                     💡 Quick Tips
                   </h4>
-                  <ul className="text-base text-blue-800 space-y-2">
+                  <ul className="text-base text-blue-800 space-y-2 text-left">
                     <li>
                       • Record metrics at consistent times for better tracking
                     </li>
@@ -263,7 +237,7 @@ export const AddMetric = () => {
             </div>
             <Button
               type="submit"
-              className="w-2xl h-10 bg-black text-white cursor-pointer"
+              className="w-2xl h-10 bg-black text-white cursor-pointer ml-12"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Saving..." : "Add Health Metric"}
