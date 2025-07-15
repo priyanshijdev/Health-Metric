@@ -18,6 +18,7 @@ import {
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
 import { mockData } from "./table.constants";
+import { saveAs } from "file-saver";
 
 const HealthTable = () => {
 
@@ -26,9 +27,7 @@ const HealthTable = () => {
   const [filterTimeOfDay, setFilterTimeOfDay] = useState<string>("All");
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  const filteredAndSortedData = [...data]
-    .filter(
-      (item) =>
+  const filteredAndSortedData = [...data].filter((item) =>
         item.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.value.toString().includes(searchTerm.toLowerCase()) ||
         item.unit.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -45,6 +44,32 @@ const HealthTable = () => {
 
   const handleDelete = (id: number) => {
     setData(data.filter((item) => item.id !== id));
+  };
+   // CSV Export Function
+  const handleExportCSV = () => {
+    const headers = ["Metric Type", "Value", "Unit", "Date", "Time", "Time of Day"];
+    const rows = filteredAndSortedData.map((item) => [
+      item.type,
+      item.value,
+      item.unit,
+      item.date,
+      item.time,
+      item.timeOfDay,
+    ]);
+    const csvContent =
+      [headers, ...rows]
+        .map((row) =>
+          row
+            .map((field) =>
+              typeof field === "string" && field.includes(",")
+                ? `"${field.replace(/"/g, '""')}"`
+                : field
+            )
+            .join(",")
+        )
+        .join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    saveAs(blob, "health-metrics.csv");
   };
 
   const todaysEntries = data.filter( (item) => item.date === "14/07/2025").length; 
@@ -63,6 +88,9 @@ const HealthTable = () => {
           <h2 className="text-2xl font-bold text-gray-800">
             Health Data Table
           </h2>
+          <Button onClick={handleExportCSV} className="ml-4 cursor-pointer" variant="outline">
+            Export CSV
+          </Button>
         </div>
         <p className="text-gray-500 mb-4 text-left">
           View, filter, and manage your health metrics ({data.length} entries
