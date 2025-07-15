@@ -8,21 +8,17 @@ A modern, responsive health metrics dashboard built using React, TypeScript, Vit
 ## Features
  ## Health Data Input
       Users can add metrics like Step Count, Water Intake, etc.
-
       Each entry includes a timestamp and numeric value.
-
       Input is validated to prevent empty or invalid submissions.
 
 📊 Data Visualization
     Health data is shown in a table (most recent entries first).
-
+    User can also have an option to export the data as a CSV file.
     Interactive Line/Bar charts (via Recharts) to track trends.
-
     Toggle views for Today, Last 7 Days, and Last 30 Days.
 
 🔍 Filtering & Sorting
     Filter data by Time of Day (Morning / Afternoon / Evening).
-
     Sort values by ascending/descending order.
 
 ##  Tech Stack
