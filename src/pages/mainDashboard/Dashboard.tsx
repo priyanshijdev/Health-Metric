@@ -34,10 +34,10 @@ const MainDashboard = () => {
           </p>
         </div>
         <Tabs defaultValue="dashboard" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 gap-8 max-w-3xl mx-auto text-lg px-6 py-3">
+          <TabsList className="grid w-full grid-cols-1 grid-rows-4 md:grid-rows-1 md:grid-cols-4 gap-10 md:gap-8 max-w-3xl h-32 md:h-9 mx-auto text-lg px-6 py-3">
             <TabsTrigger
               value="dashboard"
-              className="flex items-center gap-5 cursor-pointer border-2 bg-blue-300 p-2"
+              className="flex items-center gap-5 cursor-pointer border-2 bg-blue-300 py-4 px-2 "
             >
               <TrendingUp className="w-4 h-4" />
               Dashboard
@@ -45,7 +45,7 @@ const MainDashboard = () => {
 
             <TabsTrigger
               value="input"
-              className="flex items-center gap-2 bg-blue-300 cursor-pointer  p-2"
+              className="flex items-center gap-2 bg-blue-300 cursor-pointer  py-4 px-2"
             >
               <Activity className="w-4 h-4" />
               Add Data
@@ -53,13 +53,13 @@ const MainDashboard = () => {
 
             <TabsTrigger
               value="charts"
-              className="flex items-center gap-2  bg-blue-300 cursor-pointer  p-2"
+              className="flex items-center gap-2  bg-blue-300 cursor-pointer  py-4 px-2"
             >
               <Droplets className="w-4 h-4" />
               Charts
             </TabsTrigger>
             
-            <TabsTrigger value="table" className="flex items-center gap-2  bg-blue-300 cursor-pointer  p-2">
+            <TabsTrigger value="table" className="flex items-center gap-2  bg-blue-300 cursor-pointer  py-4 px-2">
               <Table className="w-4 h-4" />
               Data Table
             </TabsTrigger>
