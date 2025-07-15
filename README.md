@@ -2,7 +2,7 @@
 
 A modern, responsive health metrics dashboard built using React, TypeScript, Vite, Tailwind CSS, and shadcn/ui. This application allows users to input daily health-related metrics, visualize them through tables and charts, and interact via filtering and sorting tools.
 
-🔗 Live Demo: https://health-metric.vercel.app
+🔗 Live Demo: https://health-metric-tracker.vercel.app/
 ---
 
 ## Features
