@@ -8,6 +8,7 @@ import { Activity, Droplets, Heart, TrendingUp , Table} from "lucide-react";
 import { AddMetric } from "../addMetric/AddMetric";
 import { Dashboard } from "../dashboard";
 import HealthTable from "../dataTable/DataTable";
+import HealthMetricsVisualization from "../charts";
 // import { Table } from "../../components/ui/table";
 
 // import React from "react";
@@ -52,13 +53,13 @@ const MainDashboard = () => {
 
             <TabsTrigger
               value="charts"
-              className="flex items-center gap-2  bg-blue-200 cursor-pointer  p-2"
+              className="flex items-center gap-2  bg-blue-300 cursor-pointer  p-2"
             >
               <Droplets className="w-4 h-4" />
               Charts
             </TabsTrigger>
             
-            <TabsTrigger value="table" className="flex items-center gap-2  bg-blue-200 cursor-pointer  p-2">
+            <TabsTrigger value="table" className="flex items-center gap-2  bg-blue-300 cursor-pointer  p-2">
               <Table className="w-4 h-4" />
               Data Table
             </TabsTrigger>
@@ -76,6 +77,9 @@ const MainDashboard = () => {
 
              <TabsContent value="table">
             <HealthTable />
+          </TabsContent>
+            <TabsContent value="charts">
+              <HealthMetricsVisualization/>
           </TabsContent>
         </Tabs>
       </div>
