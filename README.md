@@ -20,6 +20,8 @@ A modern, responsive health metrics dashboard built using React, TypeScript, Vit
 🔍 Filtering & Sorting
     Filter data by Time of Day (Morning / Afternoon / Evening).
     Sort values by ascending/descending order.
+    
+Ensure responsiveness throughout the web application. 
 
 ##  Tech Stack
 
