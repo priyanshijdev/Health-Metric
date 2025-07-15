@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import  { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
-import { ChevronDown, TrendingUp, TrendingDown } from 'lucide-react';
+import {  TrendingUp, TrendingDown } from 'lucide-react';
 
 import {
   Select,
@@ -12,28 +12,29 @@ import {
 import { Button } from '../../components/ui/button';
 import { mockHealthData } from './index.constants';
 
-const HealthMetricsVisualization = () => {
+type MetricKey = 'steps' | 'water' | 'heartRate';
 
-  const [selectedMetric, setSelectedMetric] = useState("steps");
+const HealthMetricsVisualization = () => {
+  
+const [selectedMetric, setSelectedMetric] = useState<MetricKey>('steps');
   const [timeRange, setTimeRange] = useState("Last 7 Days"); 
   const [chartType, setChartType] = useState("Line"); // 'Line' or 'Bar'
 
-  // Filter data based on selected time range
   const getFilteredData = () => {
-    const today = new Date("2025-07-14"); // Mocking current date for consistent demonstration
+    const today = new Date("2025-07-14"); 
     const sevenDaysAgo = new Date(today);
-    sevenDaysAgo.setDate(today.getDate() - 6); // To include today, it's today - 6 days
+    sevenDaysAgo.setDate(today.getDate() - 6);
 
     return mockHealthData.filter(item => {
       const itemDate = new Date(`2025-${item.date.split(' ')[1]}-${item.date.split(' ')[0]}`);
       if (timeRange === "Last 7 Days") {
         return itemDate >= sevenDaysAgo && itemDate <= today;
       }
-      // Assuming "Today" means "14 Jul" based on mock data
+     
       if (timeRange === "Today") {
         return item.date === "14 Jul";
       }
-      return true; // For "All Data" or other future ranges
+      return true;
     });
   };
 
@@ -65,6 +66,11 @@ const HealthMetricsVisualization = () => {
       return { type: 'Stable', percentage: '0.0%', valueChange: '0.0' };
     }
   };
+  const handleMetricChange = (value: string) => {
+  if (value === "steps" || value === "water" || value === "heartRate") {
+    setSelectedMetric(value);
+  }
+};
 
   const trend = calculateTrend();
   return (
@@ -93,7 +99,7 @@ const HealthMetricsVisualization = () => {
       </div>
 
       <div className="flex flex-wrap items-center gap-4 mb-6">
-        <Select value={selectedMetric} onValueChange={setSelectedMetric}>
+      <Select value={selectedMetric} onValueChange={handleMetricChange}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select Metric" />
           </SelectTrigger>

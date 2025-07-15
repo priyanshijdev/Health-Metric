@@ -78,6 +78,7 @@ const MainDashboard = () => {
              <TabsContent value="table">
             <HealthTable />
           </TabsContent>
+          
             <TabsContent value="charts">
               <HealthMetricsVisualization/>
           </TabsContent>
