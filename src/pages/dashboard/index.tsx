@@ -51,7 +51,6 @@ export const Dashboard = () => {
         <Card className="bg-white">
           <CardHeader className="flex flex-row items-center justify-between">
             {" "}
-            {/* Add flexbox classes here */}
             <CardTitle className="text-sm">Heart Rate</CardTitle>
             <Heart className="mt-2 text-red-700" />
           </CardHeader>

@@ -19,7 +19,7 @@ import {
   TabsContent,
 } from "../../components/ui/tabs";
 import { CalendarIcon, Clock } from "lucide-react";
-import React, { useState } from "react";
+import  { useState } from "react";
 import { metricConfig } from "./metric.constants";
 
 export const AddMetric = () => {
@@ -29,26 +29,39 @@ export const AddMetric = () => {
     date: new Date().toISOString().split("T")[0],
     time: new Date().toTimeString().slice(0, 5),
   });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState({
+    type: "",
+    value: "",
+    date: "",
+    time: "",
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const currentConfig = formData.type ? metricConfig[formData.type] : null;
 
   const validateForm = () => {
-    const newErrors: Record<string, string> = {};
+    const newErrors = {
+    type: "",
+    value: "",
+    date: "",
+    time: "",
+  };
 
     if (!formData.type) {
       newErrors.type = "Metric type is required";
     }
     if (!formData.value) {
       newErrors.value = "Value is required";
-    } else if (currentConfig) {
+    } 
+      if (!formData.date) {
+      newErrors.date = "Date is required";
+    }
+    if (!formData.time) {
+      newErrors.time = "Time is required";
+    }
+    else if (currentConfig) {
       const value = parseFloat(formData.value);
-      if (
-        isNaN(value) ||
-        value < currentConfig.min ||
-        value > currentConfig.max
-      ) {
+      if (isNaN(value) ||  value < currentConfig.min || value > currentConfig.max) 
+      {
         newErrors.value = `Value must be between ${currentConfig.min} and ${currentConfig.max} ${currentConfig.unit}`;
       }
     }
@@ -58,12 +71,12 @@ export const AddMetric = () => {
     if (!formData.time) {
       newErrors.time = "Time is required";
     }
-
+    const isValid = Object.values(newErrors).every((msg) => msg === "");
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     if (!validateForm()) return;
 
@@ -90,12 +103,15 @@ export const AddMetric = () => {
         date: new Date().toISOString().split("T")[0],
         time: new Date().toTimeString().slice(0, 5),
       });
-      setErrors({});
+      setErrors({
+        type: "",
+        value: "",
+        date: "",
+        time: "",
+      });
     } catch (error) {
-      console.error("Error saving to localStorage:", error);
+      console.error("Error saving to localStorage::", error);
       alert("Failed to save health metric. Please try again.");
-    } finally {
-      setIsSubmitting(false);
     }
   };
   return (
