@@ -41,9 +41,8 @@ A modern, responsive health metrics dashboard built using React, TypeScript, Vit
 
 ### 1. Clone the Repository
 
-```bash
-git clone https://github.com/your-username/health-metric.git
-cd health-metric
+git clone https://github.com/priyanshijdev/Health-Metric
+cd Health-Metric
 
   ### If you're using Bun:
 
@@ -52,15 +51,22 @@ bun install
 Or with npm:
 npm install
 
-bun dev
+bun run dev
 
 The app will be running at http://localhost:5173
 
 
 ## Future Improvements
 
-  User authentication for multi-user support
+🔹 Table Refactor with TanStack Table
+  Replace custom table logic with TanStack Table to:
+  Simplify sorting, filtering, and pagination
+  Make table structure more modular and maintainable
 
-  Mobile-first enhancements and offline capabilities
+🔹 Persistent Storage with useLocalStorage
+   Integrate useLocalStorage hook from usehooks-ts to:
+   Retain user-entered metrics between sessions
 
+// Example
+const [data, setData] = useLocalStorage<HealthMetric[]>("health-data", []);
 
