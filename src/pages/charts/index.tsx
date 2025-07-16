@@ -16,7 +16,7 @@ type MetricKey = 'steps' | 'water' | 'heartRate';
 
 const HealthMetricsVisualization = () => {
   
-const [selectedMetric, setSelectedMetric] = useState<MetricKey>('steps');
+  const [selectedMetric, setSelectedMetric] = useState<MetricKey>('steps');
   const [timeRange, setTimeRange] = useState("Last 7 Days"); 
   const [chartType, setChartType] = useState("Line"); // 'Line' or 'Bar'
 
@@ -84,14 +84,14 @@ const [selectedMetric, setSelectedMetric] = useState<MetricKey>('steps');
           <Button
             variant={chartType === "Line" ? "default" : "outline"}
             onClick={() => setChartType("Line")}
-            className="px-4 py-2"
+            className="px-4 py-2 cursor-pointer bg-gray-100 hover:bg-gray-200"
           >
             Line
           </Button>
           <Button
             variant={chartType === "Bar" ? "default" : "outline"}
             onClick={() => setChartType("Bar")}
-            className="px-4 py-2"
+            className="px-4 py-2 cursor-pointer  bg-gray-100 hover:bg-gray-200"
           >
             Bar
           </Button>

@@ -82,19 +82,14 @@ export const AddMetric = () => {
 
     setIsSubmitting(true);
     try {
-      const existingData = JSON.parse(
-        localStorage.getItem("healthMetrics") || "[]"
-      );
+      const existingData = JSON.parse(localStorage.getItem("healthMetrics") || "[]");
       const newEntry = {
         ...formData,
         id: Date.now(),
         timestamp: new Date().toISOString(),
       };
       // Save updated data to---->> localStorage
-      localStorage.setItem(
-        "healthMetrics",
-        JSON.stringify([...existingData, newEntry])
-      );
+      localStorage.setItem( "healthMetrics", JSON.stringify([...existingData, newEntry]));
       alert("Health metric saved successfully!");
 
       setFormData({
@@ -132,6 +127,7 @@ export const AddMetric = () => {
                 <div className="space-y-4 ">
                   <Label htmlFor="type">Metric Type *</Label>
                   <Select 
+
                     value={formData.type}
                     onValueChange={(value) =>
                       setFormData((prev) => ({
@@ -146,7 +142,7 @@ export const AddMetric = () => {
                     >
                       <SelectValue placeholder="Select metric type" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white cursor-pointer  w-80">
+                    <SelectContent className="bg-white cursor-pointer  w-88">
                       <SelectItem value="steps">📱 Step Count</SelectItem>
                       <SelectItem value="water">💧 Water Intake</SelectItem>
                       <SelectItem value="heart_rate">❤️ Heart Rate</SelectItem>
@@ -200,7 +196,6 @@ export const AddMetric = () => {
                     onChange={(e) =>
                       setFormData((prev) => ({ ...prev, date: e.target.value }))
                     }
-                    max={new Date().toISOString().split("T")[0]}
                     className={errors.date ? "border-red-500" : ""}
                   />
                   {errors.date && (
