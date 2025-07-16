@@ -1,7 +1,14 @@
+import {
+  Activity,
+  Droplets,
+  Heart,
+} from "lucide-react";
+
 export const mockData = [
   {
     id: 1,
     type: "Steps",
+    icon: Activity,
     value: 10000,
     unit: "steps",
     date: "14/07/2025",
@@ -11,6 +18,7 @@ export const mockData = [
   {
     id: 2,
     type: "Water Intake",
+    icon: Droplets,
     value: 2.1,
     unit: "liters",
     date: "14/07/2025",
@@ -20,6 +28,7 @@ export const mockData = [
   {
     id: 3,
     type: "Steps",
+    icon: Activity,
     value: 12000,
     unit: "steps",
     date: "14/07/2025",
@@ -29,6 +38,7 @@ export const mockData = [
   {
     id: 4,
     type: "Heart Rate",
+    icon: Heart,
     value: 72,
     unit: "bpm",
     date: "14/07/2025",
@@ -38,6 +48,7 @@ export const mockData = [
   {
     id: 5,
     type: "Water Intake",
+    icon: Droplets,
     value: 1.2,
     unit: "liters",
     date: "14/07/2025",
@@ -45,8 +56,9 @@ export const mockData = [
     timeOfDay: "Morning",
   },
   {
-    id: 5,
+    id: 6,
     type: "Heart Rate",
+    icon: Heart,
     value: 72,
     unit: "bpm",
     date: "14/07/2025",
@@ -54,12 +66,33 @@ export const mockData = [
     timeOfDay: "Afternoon",
   },
   {
-    id: 6,
+    id: 7,
     type: "Water Intake",
+    icon: Droplets,
     value: 8.2,
     unit: "liters",
     date: "24/07/2025",
     time: "01:46",
     timeOfDay: "Night",
+  },
+    {
+    id: 8,
+    type: "Steps",
+    icon: Activity,
+    value: 3000,
+    unit: "steps",
+    date: "16/07/2025",
+    time: "19:47",
+    timeOfDay: "Night",
+  },
+   {
+    id: 9,
+    type: "Water Intake",
+    icon: Droplets,
+    value: 8.2,
+    unit: "liters",
+    date: "24/07/2025",
+    time: "01:46",
+    timeOfDay: "Morning",
   },
 ];

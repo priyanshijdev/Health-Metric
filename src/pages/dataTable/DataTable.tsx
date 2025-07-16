@@ -20,6 +20,7 @@ import { useState } from "react";
 import { mockData } from "./table.constants";
 import { saveAs } from "file-saver";
 
+
 const HealthTable = () => {
 
   const [data, setData] = useState(mockData);
@@ -93,8 +94,7 @@ const HealthTable = () => {
           </Button>
         </div>
         <p className="text-gray-500 mb-4 text-left">
-          View, filter, and manage your health metrics ({data.length} entries
-          shown)
+          View, filter, and manage your health metrics ({data.length} entries shown)
         </p>
             {/* Showng alll the entries in small box/divs */}
         <div className="grid grid-cols-4 gap-4 text-center">
@@ -183,7 +183,21 @@ const HealthTable = () => {
           {filteredAndSortedData.map((entry) => (
             <TableRow key={entry.id}>
               <TableCell className="py-3 px-4 whitespace-nowrap">
-                {entry.type}
+                  {/* {entry.icon && <entry.icon className="w-4 h-4 text-gray-600" />} */}
+                   {entry.icon && (
+                      <entry.icon
+                        className={`w-5 h-5 ${
+                          entry.type === "Steps"
+                            ? "text-green-600"
+                            : entry.type === "Water Intake"
+                            ? "text-blue-500"
+                            : entry.type === "Heart Rate"
+                            ? "text-red-500"
+                            : "text-gray-600"
+                        }`}
+                      />
+                    )}
+                  <span>{entry.type}</span>
               </TableCell>
               <TableCell className="py-3 px-4 whitespace-nowrap font-bold text-gray-900">
                 {entry.value}{" "}
